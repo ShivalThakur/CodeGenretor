@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="SqlQueryGenrater">
+</Property><Property Name="Solution File" Value="F:\SqlQueryGenrator\SqlQueryGenrater.sln">
+</Property><Property Name="User Options File" Value="F:\SqlQueryGenrator\SqlQueryGenrater.suo">
+</Property><Property Name="Date" Value="Sunday, March 03, 2013">
+</Property><Property Name="Time" Value="12:06 PM">
+</Property><Property Name="Log Number" Value="2">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="SqlQueryGenrater.sln" Description="File successfully backed up as F:\SqlQueryGenrator\Backup\Backup\SqlQueryGenrater.sln">
+</Event><Event ErrorLevel="0" Project="" Source="SqlQueryGenrater.suo" Description="File successfully backed up as F:\SqlQueryGenrator\Backup\Backup\SqlQueryGenrater.suo">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="SqlQueryGenrater.csproj" Description="Project file successfully backed up as F:\SqlQueryGenrator\Backup\Backup\SqlQueryGenrater.csproj">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="SqlQueryGenrater.csproj.user" Description="Project user file successfully backed up as F:\SqlQueryGenrator\Backup\Backup\SqlQueryGenrater.csproj.user">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="ConnectionStringsDataSet1.Designer.cs" Description="File successfully backed up as F:\SqlQueryGenrator\Backup\Backup\ConnectionStringsDataSet1.Designer.cs">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="Form1.cs" Description="File successfully backed up as F:\SqlQueryGenrator\Backup\Backup\Form1.cs">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="Form1.Designer.cs" Description="File successfully backed up as F:\SqlQueryGenrator\Backup\Backup\Form1.Designer.cs">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="password.cs" Description="File successfully backed up as F:\SqlQueryGenrator\Backup\Backup\password.cs">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="password.Designer.cs" Description="File successfully backed up as F:\SqlQueryGenrator\Backup\Backup\password.Designer.cs">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="Program.cs" Description="File successfully backed up as F:\SqlQueryGenrator\Backup\Backup\Program.cs">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="Properties\AssemblyInfo.cs" Description="File successfully backed up as F:\SqlQueryGenrator\Backup\Backup\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="SPs.cs" Description="File successfully backed up as F:\SqlQueryGenrator\Backup\Backup\SPs.cs">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="SPs.Designer.cs" Description="File successfully backed up as F:\SqlQueryGenrator\Backup\Backup\SPs.Designer.cs">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="Properties\Resources.Designer.cs" Description="File successfully backed up as F:\SqlQueryGenrator\Backup\Backup\Properties\Resources.Designer.cs">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="Properties\Settings.Designer.cs" Description="File successfully backed up as F:\SqlQueryGenrator\Backup\Backup\Properties\Settings.Designer.cs">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="app.config" Description="File successfully backed up as F:\SqlQueryGenrator\Backup\Backup\app.config">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="ConnectionStringsDataSet1.xsc" Description="File successfully backed up as F:\SqlQueryGenrator\Backup\Backup\ConnectionStringsDataSet1.xsc">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="ConnectionStringsDataSet1.xsd" Description="File successfully backed up as F:\SqlQueryGenrator\Backup\Backup\ConnectionStringsDataSet1.xsd">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="ConnectionStringsDataSet1.xss" Description="File successfully backed up as F:\SqlQueryGenrator\Backup\Backup\ConnectionStringsDataSet1.xss">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="Properties\Settings.settings" Description="File successfully backed up as F:\SqlQueryGenrator\Backup\Backup\Properties\Settings.settings">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="ConnectionStrings.accdb" Description="File successfully backed up as F:\SqlQueryGenrator\Backup\Backup\ConnectionStrings.accdb">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="Form1.resx" Description="File successfully backed up as F:\SqlQueryGenrator\Backup\Backup\Form1.resx">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="password.resx" Description="File successfully backed up as F:\SqlQueryGenrator\Backup\Backup\password.resx">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="Properties\Resources.resx" Description="File successfully backed up as F:\SqlQueryGenrator\Backup\Backup\Properties\Resources.resx">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="SPs.resx" Description="File successfully backed up as F:\SqlQueryGenrator\Backup\Backup\SPs.resx">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="SqlQueryGenrater.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="SqlQueryGenrater" Source="SqlQueryGenrater.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="" Source="SqlQueryGenrater.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="SqlQueryGenrater.sln" Description="Converted">
+</Event></UpgradeLog>

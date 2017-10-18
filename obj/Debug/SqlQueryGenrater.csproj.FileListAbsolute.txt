@@ -1,0 +1,12 @@
+F:\SqlQueryGenrator\bin\Debug\SearchFile.exe.config
+F:\SqlQueryGenrator\bin\Debug\ConnectionStrings.accdb
+F:\SqlQueryGenrator\bin\Debug\SearchFile.exe
+F:\SqlQueryGenrator\bin\Debug\SearchFile.pdb
+F:\SqlQueryGenrator\obj\Debug\ResolveAssemblyReference.cache
+F:\SqlQueryGenrator\obj\Debug\SearchFile.Form1.resources
+F:\SqlQueryGenrator\obj\Debug\SearchFile.Properties.Resources.resources
+F:\SqlQueryGenrator\obj\Debug\SearchFile.SPs.resources
+F:\SqlQueryGenrator\obj\Debug\SqlQueryGenrater.csproj.GenerateResource.Cache
+F:\SqlQueryGenrator\obj\Debug\SearchFile.exe
+F:\SqlQueryGenrator\obj\Debug\SearchFile.pdb
+F:\SqlQueryGenrator\obj\Debug\SearchFile.password.resources

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="SqlQueryGenrater">
+</Property><Property Name="Solution File" Value="E:\Shival\SqlQueryGenrator\SqlQueryGenrater.sln">
+</Property><Property Name="User Options File" Value="E:\Shival\SqlQueryGenrator\SqlQueryGenrater.suo">
+</Property><Property Name="Date" Value="December 07, 2012">
+</Property><Property Name="Time" Value="9:38 AM">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="SqlQueryGenrater.sln" Description="File successfully backed up as E:\Shival\SqlQueryGenrator\Backup\SqlQueryGenrater.sln">
+</Event><Event ErrorLevel="0" Project="" Source="SqlQueryGenrater.suo" Description="File successfully backed up as E:\Shival\SqlQueryGenrator\Backup\SqlQueryGenrater.suo">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="SqlQueryGenrater.csproj" Description="Project file successfully backed up as E:\Shival\SqlQueryGenrator\Backup\SqlQueryGenrater.csproj">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="SqlQueryGenrater.csproj.user" Description="Project user file successfully backed up as E:\Shival\SqlQueryGenrator\Backup\SqlQueryGenrater.csproj.user">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="ConnectionStringsDataSet1.Designer.cs" Description="File successfully backed up as E:\Shival\SqlQueryGenrator\Backup\ConnectionStringsDataSet1.Designer.cs">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="Form1.cs" Description="File successfully backed up as E:\Shival\SqlQueryGenrator\Backup\Form1.cs">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="Form1.Designer.cs" Description="File successfully backed up as E:\Shival\SqlQueryGenrator\Backup\Form1.Designer.cs">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="Program.cs" Description="File successfully backed up as E:\Shival\SqlQueryGenrator\Backup\Program.cs">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="Properties\AssemblyInfo.cs" Description="File successfully backed up as E:\Shival\SqlQueryGenrator\Backup\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="Properties\Resources.Designer.cs" Description="File successfully backed up as E:\Shival\SqlQueryGenrator\Backup\Properties\Resources.Designer.cs">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="Properties\Settings.Designer.cs" Description="File successfully backed up as E:\Shival\SqlQueryGenrator\Backup\Properties\Settings.Designer.cs">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="app.config" Description="File successfully backed up as E:\Shival\SqlQueryGenrator\Backup\app.config">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="ConnectionStringsDataSet1.xsc" Description="File successfully backed up as E:\Shival\SqlQueryGenrator\Backup\ConnectionStringsDataSet1.xsc">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="ConnectionStringsDataSet1.xsd" Description="File successfully backed up as E:\Shival\SqlQueryGenrator\Backup\ConnectionStringsDataSet1.xsd">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="ConnectionStringsDataSet1.xss" Description="File successfully backed up as E:\Shival\SqlQueryGenrator\Backup\ConnectionStringsDataSet1.xss">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="Properties\Settings.settings" Description="File successfully backed up as E:\Shival\SqlQueryGenrator\Backup\Properties\Settings.settings">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="ConnectionStrings.accdb" Description="File successfully backed up as E:\Shival\SqlQueryGenrator\Backup\ConnectionStrings.accdb">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="Form1.resx" Description="File successfully backed up as E:\Shival\SqlQueryGenrator\Backup\Form1.resx">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="Properties\Resources.resx" Description="File successfully backed up as E:\Shival\SqlQueryGenrator\Backup\Properties\Resources.resx">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="SqlQueryGenrater.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="SqlQueryGenrater" Source="SqlQueryGenrater.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="SqlQueryGenrater.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="SqlQueryGenrater.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="SqlQueryGenrater" Source="SqlQueryGenrater.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>
