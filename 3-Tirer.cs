@@ -183,13 +183,19 @@ and COLUMNPROPERTY(object_id(TABLE_NAME), COLUMN_NAME, 'IsIdentity') <> 1", CS.T
             string _Cs = "";
             foreach (DataGridViewRow Row in this.dataGridView_1707.Rows)
             {
+                //Last Row Fix
+                if (Row.Cells[2].Value == null)
+                {
+                    continue;
+                }
+                //
                 if ((bool)Row.Cells[Check.Name].Value)
                 {
                     _Design += Environment.NewLine+ "<tr>";
                     _Design +=  "\n<td>" + Row.Cells[2].Value + "</td>";
                     if (Row.Cells[TextBoxDropDown.Name].Value.ToString() == "TextBox")
                     {
-                        _Design += "\n<td><asp:TextBox runat=\"server\" MaxLength=\"" + Row.Cells[4].Value + "\" ID=\"txt" + Row.Cells[2].Value + "\"></asp:TextBox></td>";
+                        _Design += "\n<td><asp:TextBox runat=\"server\" " + (Row.Cells[4].Value != System.DBNull.Value  ? " MaxLength=\"" + Row.Cells[4].Value + "\"" : "") + "  ID=\"txt" + Row.Cells[2].Value + "\"></asp:TextBox></td>";
                         _Cs += Environment.NewLine + "command.Parameters.AddWithValue(\"@" + Row.Cells[2].Value + "\",txt" + Row.Cells[2].Value + "\");";
                     }
                     else

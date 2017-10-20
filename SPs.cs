@@ -21,7 +21,18 @@ namespace SearchFile
         private void button1_Click(object sender, EventArgs e)
         {
             #region Validations
-		 
+		    if(sp_name.Text=="")
+            {
+                MessageBox.Show("Please enter sp Name..");
+                sp_name.Focus();
+                return;
+            }
+            if (table_name.Text == "")
+            {
+                MessageBox.Show("Please enter table Name..");
+                table_name.Focus();
+                return;
+            }
 	        #endregion
 
 
@@ -144,16 +155,12 @@ where table_name = @tablename
                            " IF  @I_U_S='U'" + Environment.NewLine +""+  updateQuery.ToUpper() + ""+Environment.NewLine +
                             @" END
                              ";
-            string create_File_Path=FolderPath.Text+@"\"+sp_name.Text + ".txt";
-
-            File.WriteAllText(create_File_Path,result.Text);
-            FileStream fs = new FileStream(create_File_Path, FileMode.Open);
-            
-
-
-
-            
-                
+            if (FolderPath.Text != "")
+            {
+                string create_File_Path = FolderPath.Text + @"\" + sp_name.Text + ".txt";
+                File.WriteAllText(create_File_Path, result.Text);
+                FileStream fs = new FileStream(create_File_Path, FileMode.Open);
+            }              
             //result.Text = CS.SelectedValue.ToString();
 
            //result.Text= con.ConnectionString;-
