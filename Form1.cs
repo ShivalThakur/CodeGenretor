@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.IO;
 using s = System.Net;
 using System.Data.SqlClient;
+using SearchFile.Library;
 
 namespace SearchFile
 {
@@ -197,7 +198,8 @@ and COLUMNPROPERTY(object_id(TABLE_NAME), COLUMN_NAME, 'IsIdentity') <> 1", con)
 
       private void label2_Click(object sender, EventArgs e)
       {
-
+                  
+          
       }
 
       private void Genrate_Update(object sender, EventArgs e)

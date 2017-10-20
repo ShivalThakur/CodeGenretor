@@ -95,6 +95,8 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Library\ITechnology.cs" />
+    <Compile Include="Library\Technology.cs" />
     <Compile Include="password.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,9 +154,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ConnectionStrings.accdb">

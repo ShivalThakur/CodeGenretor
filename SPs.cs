@@ -150,7 +150,7 @@ where table_name = @tablename
                         GO
                         SET QUOTED_IDENTIFIER ON
                         GO";
-            result.Text += Environment.NewLine + @" CREATE PROCEDURE " + sp_name.Text.ToUpper() + " " + ParaMeters_of_Sp.ToUpper() + "  " + Environment.NewLine +
+            result.Text += Environment.NewLine + @" CREATE PROCEDURE " + sp_name.Text + " " + ParaMeters_of_Sp + "  " + Environment.NewLine +
 
                             @"AS " + Environment.NewLine + ""
                             +
@@ -158,12 +158,12 @@ where table_name = @tablename
 	                             
 	                         SET NOCOUNT ON;
                                
-                            " + Environment.NewLine + " IF @I_U_S='I'" + Environment.NewLine + "" + insertQuery.ToUpper() + "" +
+                            " + Environment.NewLine + " IF @I_U_S='I'" + Environment.NewLine + "" + insertQuery + "" +
 
                        Environment.NewLine +
-                           " IF  @I_U_S='U'" + Environment.NewLine + "" + updateQuery.ToUpper() + "" + Environment.NewLine +
-                           " IF  @I_U_S='S'" + Environment.NewLine + "" + selectCols.ToUpper() + " from " + table_name.Text + selectWhere + Environment.NewLine +
-                           " IF  @I_U_S='A'" + Environment.NewLine + "" + selectCols.ToUpper() + " from " + table_name.Text + Environment.NewLine +                            @" END
+                           " IF  @I_U_S='U'" + Environment.NewLine + "" + updateQuery + "" + Environment.NewLine +
+                           " IF  @I_U_S='S'" + Environment.NewLine + "" + selectCols + " from " + table_name.Text + selectWhere + Environment.NewLine +
+                           " IF  @I_U_S='A'" + Environment.NewLine + "" + selectCols + " from " + table_name.Text + Environment.NewLine +                            @" END
                              ";
             if (FolderPath.Text != "")
             {
