@@ -21,7 +21,7 @@ namespace SearchFile
         private void button1_Click(object sender, EventArgs e)
         {
             #region Validations
-		    if(sp_name.Text=="")
+            if (sp_name.Text == "")
             {
                 MessageBox.Show("Please enter sp Name..");
                 sp_name.Focus();
@@ -33,12 +33,15 @@ namespace SearchFile
                 table_name.Focus();
                 return;
             }
-	        #endregion
-
+            #endregion
+            #region Variables
+            string selectCols = "Select ";
+            string selectWhere = "";
+            #endregion
 
             #region Insert_StateMent
             string ParaMeters_of_Sp = "";
-            string insertQuery = "insert into "+table_name.Text+"(" ;
+            string insertQuery = "insert into " + table_name.Text + "(";
             /////form 1 obj
             Form1 f1 = new Form1();
             SqlConnection con = new SqlConnection(Connection_Strings.Text);
@@ -83,22 +86,26 @@ where table_name = @tablename
                 if (i == 0)
                 {
                     insertQuery += "@" + ds.Tables[0].Rows[i]["column_name"].ToString().Replace(" ", "_") + Environment.NewLine;
+                    selectCols += ds.Tables[0].Rows[i]["column_name"].ToString();
                 }
                 else
                 {
                     insertQuery += "," + "@" + ds.Tables[0].Rows[i]["column_name"].ToString().Replace(" ", "_") + Environment.NewLine;
+                    selectCols += "," + ds.Tables[0].Rows[i]["column_name"].ToString();
+
                 }
 
             }
 
             insertQuery += ")";
+            //Select Cols
 
             ///SP ParaMeters
             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
             {
                 if (i == 0)
                 {
-                    ParaMeters_of_Sp += Environment.NewLine+ "@" + ds.Tables[0].Rows[i]["column_name"].ToString().Replace(" ", "_") + " " + ds.Tables[0].Rows[i]["data_type"].ToString()+ " = NULL" ;
+                    ParaMeters_of_Sp += Environment.NewLine + "@" + ds.Tables[0].Rows[i]["column_name"].ToString().Replace(" ", "_") + " " + ds.Tables[0].Rows[i]["data_type"].ToString() + " = NULL";
                 }
                 else
                 {
@@ -109,15 +116,15 @@ where table_name = @tablename
             /////////Additional Parameter Which will be used which action should be taken  insert,update or Select
             ParaMeters_of_Sp += Environment.NewLine + ", @I_U_S char(1),@" + ds.Tables[1].Rows[0]["column_name"].ToString().Replace(" ", "_") + " " + ds.Tables[1].Rows[0]["data_type"].ToString() + " = NULL" + " ";
 
-            
+
 
 
             ///
             ///
-//            richTextBox1.Text = insertQuery;
+            //            richTextBox1.Text = insertQuery;
             #endregion
             #region Update Statement
-            string updateQuery = " update  "+table_name.Text+" set " ;
+            string updateQuery = " update  " + table_name.Text + " set ";
             ////uPDATE Statment 
             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
             {
@@ -127,12 +134,14 @@ where table_name = @tablename
                 }
                 else
                 {
-                    updateQuery += "," + @"[" + ds.Tables[0].Rows[i]["column_name"] + "]=ISNULL(@" + ds.Tables[0].Rows[i]["column_name"].ToString().Replace(" ", "_") + ",[" + ds.Tables[0].Rows[i]["column_name"].ToString() + "])"+ Environment.NewLine;
+                    updateQuery += "," + @"[" + ds.Tables[0].Rows[i]["column_name"] + "]=ISNULL(@" + ds.Tables[0].Rows[i]["column_name"].ToString().Replace(" ", "_") + ",[" + ds.Tables[0].Rows[i]["column_name"].ToString() + "])" + Environment.NewLine;
                 }
 
             }
 
-            updateQuery += Environment.NewLine + @"where " +"["+ Update__Id_Col +"]" + " =@" + ds.Tables[1].Rows[0]["column_name"].ToString().Replace(" ", "_");
+            updateQuery += Environment.NewLine + @"where " + "[" + Update__Id_Col + "]" + " =@" + ds.Tables[1].Rows[0]["column_name"].ToString().Replace(" ", "_");
+            selectWhere += Environment.NewLine + @"where " + "[" + Update__Id_Col + "]" + " =@" + ds.Tables[1].Rows[0]["column_name"].ToString().Replace(" ", "_");
+
             #endregion
 
 
@@ -149,21 +158,22 @@ where table_name = @tablename
 	                             
 	                         SET NOCOUNT ON;
                                
-                            " + Environment.NewLine+ " IF @I_U_S='I'" + Environment.NewLine +""+ insertQuery.ToUpper() + "" +
-                               
-                       Environment.NewLine+     
-                           " IF  @I_U_S='U'" + Environment.NewLine +""+  updateQuery.ToUpper() + ""+Environment.NewLine +
-                            @" END
+                            " + Environment.NewLine + " IF @I_U_S='I'" + Environment.NewLine + "" + insertQuery.ToUpper() + "" +
+
+                       Environment.NewLine +
+                           " IF  @I_U_S='U'" + Environment.NewLine + "" + updateQuery.ToUpper() + "" + Environment.NewLine +
+                           " IF  @I_U_S='S'" + Environment.NewLine + "" + selectCols.ToUpper() + " from " + table_name.Text + selectWhere + Environment.NewLine +
+                           " IF  @I_U_S='A'" + Environment.NewLine + "" + selectCols.ToUpper() + " from " + table_name.Text + Environment.NewLine +                            @" END
                              ";
             if (FolderPath.Text != "")
             {
                 string create_File_Path = FolderPath.Text + @"\" + sp_name.Text + ".txt";
                 File.WriteAllText(create_File_Path, result.Text);
                 FileStream fs = new FileStream(create_File_Path, FileMode.Open);
-            }              
+            }
             //result.Text = CS.SelectedValue.ToString();
 
-           //result.Text= con.ConnectionString;-
+            //result.Text= con.ConnectionString;-
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
@@ -177,8 +187,8 @@ where table_name = @tablename
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
                 FolderPath.Text = folderBrowserDialog1.SelectedPath;
             else
-                FolderPath.Text="";
-            
+                FolderPath.Text = "";
+
         }
 
         private void tabPage2_Click(object sender, EventArgs e)
@@ -193,16 +203,16 @@ where table_name = @tablename
             con.Open();
             SqlDataAdapter adapter = new SqlDataAdapter(@"select Upper(name) as Sps from sys.objects
 where type='P' order by 1", con);
-             
+
             DataSet ds = new DataSet();
             adapter.Fill(ds);
             con.Close();
             AllSps.DisplayMember = "Sps";
-            AllSps.ValueMember = "Sps";            
+            AllSps.ValueMember = "Sps";
             AllSps.DataSource = ds.Tables[0];
-            
-	        #endregion
-       
+
+            #endregion
+
 
         }
 
@@ -218,15 +228,15 @@ where SPECIFIC_NAME=@procedure", con);
             adapter.SelectCommand.Parameters.Add("@procedure", SqlDbType.VarChar).Value = AllSps.SelectedValue.ToString();
             DataSet ds = new DataSet();
             adapter.Fill(ds);
-            string updateQuery = "SqlCommand " +SqlCommand_obj.Text +" = new SqlCommand();";
-            updateQuery += Environment.NewLine +  SqlCommand_obj.Text+".CommandType =  CommandType.StoredProcedure ;";
+            string updateQuery = "SqlCommand " + SqlCommand_obj.Text + " = new SqlCommand();";
+            updateQuery += Environment.NewLine + SqlCommand_obj.Text + ".CommandType =  CommandType.StoredProcedure ;";
             updateQuery += Environment.NewLine + SqlCommand_obj.Text + ".CommandText = \"" + AllSps.SelectedValue.ToString() + "\";";
             ///////////parameters
             Form1 f = new Form1();
 
-            foreach(DataRow dr in ds.Tables[0].Rows)
+            foreach (DataRow dr in ds.Tables[0].Rows)
             {
-            updateQuery +=Environment.NewLine+ SqlCommand_obj.Text  +".Parameters.Add(\""+dr["Parameter_name"]+"\",SqlDbType."+f.SqlDataType(dr["Data_Type"].ToString())+").Value=";
+                updateQuery += Environment.NewLine + SqlCommand_obj.Text + ".Parameters.Add(\"" + dr["Parameter_name"] + "\",SqlDbType." + f.SqlDataType(dr["Data_Type"].ToString()) + ").Value=";
             }
             if (ins.Checked)
             {
@@ -235,7 +245,7 @@ where SPECIFIC_NAME=@procedure", con);
             else
             {
             }
-            updateQuery +=Environment.NewLine+ SqlCommand_obj.Text+ ".ExecuteNonQuery();";
+            updateQuery += Environment.NewLine + SqlCommand_obj.Text + ".ExecuteNonQuery();";
             richTextBox1.Text = updateQuery;
         }
     }
