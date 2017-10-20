@@ -181,6 +181,7 @@ and COLUMNPROPERTY(object_id(TABLE_NAME), COLUMN_NAME, 'IsIdentity') <> 1", CS.T
         {
             string _Design = "<table>";
             string _Cs = "";
+            string _GridCols = "";
             foreach (DataGridViewRow Row in this.dataGridView_1707.Rows)
             {
                 //Last Row Fix
@@ -204,10 +205,15 @@ and COLUMNPROPERTY(object_id(TABLE_NAME), COLUMN_NAME, 'IsIdentity') <> 1", CS.T
                         _Cs +=Environment.NewLine+  "command.Parameters.AddWithValue(\"@" + Row.Cells[2].Value + "\",ddl" + Row.Cells[2].Value + "\");";
 
                     }
+                    _GridCols += "\n<asp:BoundField HeaderText=\"" + Row.Cells[2].Value + "\"" + " DataField=\"" + Row.Cells[2].Value + "\"" + " />";
                     _Design += "</tr>";
                 }
             }
             _Design += "<tr><td><asp:Button runat=\"server\" Text=\"Submit\" ID=\"btnSave\"></td></tr></table>";
+            //Adding GridView to show data
+            _Design += @"\n<asp:GridView runat=""server"" ID=""grdResult"">
+                         <Columns> " + _GridCols + "\n</Columns>\n</asp:GridView>";
+            //
             Design_.Text= _Design;
             CS_.Text = _Cs;
         }
