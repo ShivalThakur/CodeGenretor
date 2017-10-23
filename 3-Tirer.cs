@@ -181,6 +181,7 @@ and COLUMNPROPERTY(object_id(TABLE_NAME), COLUMN_NAME, 'IsIdentity') <> 1", CS.T
         {
             string _Design = "<table>";
             string _Cs = "";
+            string _BindEditData = Environment.NewLine +Environment.NewLine + "void BindData(){";
             string _GridCols = "";
             foreach (DataGridViewRow Row in this.dataGridView_1707.Rows)
             {
@@ -198,24 +199,29 @@ and COLUMNPROPERTY(object_id(TABLE_NAME), COLUMN_NAME, 'IsIdentity') <> 1", CS.T
                     {
                         _Design += "\n<td><asp:TextBox runat=\"server\" " + (Row.Cells[4].Value != System.DBNull.Value  ? " MaxLength=\"" + Row.Cells[4].Value + "\"" : "") + "  ID=\"txt" + Row.Cells[2].Value + "\"></asp:TextBox></td>";
                         _Cs += Environment.NewLine + "command.Parameters.AddWithValue(\"@" + Row.Cells[2].Value + "\",txt" + Row.Cells[2].Value + "\");";
+                        _BindEditData += Environment.NewLine + "txt" + Row.Cells[2].Value + ".Text = ds.Tables[0].Rows[0][\"" + Row.Cells[2].Value + "\"];";
                     }
                     else
                     {
                         _Design += "<td><asp:DropDownList runat=\"server\" ID=\"ddl" + Row.Cells[2].Value + "\"></asp:DropDownList></td>";
                         _Cs +=Environment.NewLine+  "command.Parameters.AddWithValue(\"@" + Row.Cells[2].Value + "\",ddl" + Row.Cells[2].Value + "\");";
+                        _BindEditData += Environment.NewLine + "ddl" + Row.Cells[2].Value + ".SelectedValue = ds.Tables[0].Rows[0][\"" + Row.Cells[2].Value + "\"];";
+
+
 
                     }
                     _GridCols += "\n<asp:BoundField HeaderText=\"" + Row.Cells[2].Value + "\"" + " DataField=\"" + Row.Cells[2].Value + "\"" + " />";
                     _Design += "</tr>";
                 }
             }
-            _Design += "<tr><td><asp:Button runat=\"server\" Text=\"Submit\" ID=\"btnSave\"></td></tr></table>";
+            _Design += "<tr><td><asp:Button runat=\"server\" Text=\"Submit\" ID=\"btnSave\" /></td></tr></table>";
             //Adding GridView to show data
             _Design += @"\n<asp:GridView runat=""server"" ID=""grdResult"">
                          <Columns> " + _GridCols + "\n</Columns>\n</asp:GridView>";
             //
             Design_.Text= _Design;
-            CS_.Text = _Cs;
+            _BindEditData += "}";
+            CS_.Text = _Cs + _BindEditData;
         }
 
     
