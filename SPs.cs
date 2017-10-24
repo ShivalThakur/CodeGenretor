@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.IO;
 
+
 namespace SearchFile
 {
     public partial class SPs : Form
@@ -212,12 +213,20 @@ where type='P' order by 1", con);
             AllSps.DataSource = ds.Tables[0];
 
             #endregion
+            //Load TechNologies
+            var technologies = Enum.GetNames(typeof(Technologies));
+            foreach (var item in technologies)
+            {
+                ddlTechnology.Items.Add(item);
+            }
 
 
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            //var currentTechnology = Enum.GetValues(typeof(Technologies)).Cast<Int32>().ToDictionary(currentItem => Enum.GetName(typeof(Technologies), currentItem));
+            Technology tech = new Technology((Technologies)Enum.Parse(typeof(Technologies), Convert.ToString(ddlTechnology.SelectedItem)));
             SqlConnection con = new SqlConnection(Connection_Strings.Text);
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.StoredProcedure;
@@ -247,6 +256,11 @@ where SPECIFIC_NAME=@procedure", con);
             }
             updateQuery += Environment.NewLine + SqlCommand_obj.Text + ".ExecuteNonQuery();";
             richTextBox1.Text = updateQuery;
+        }
+
+        private void AllSps_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

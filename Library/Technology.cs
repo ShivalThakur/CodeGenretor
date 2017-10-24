@@ -3,52 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SearchFile.Library
+namespace SearchFile
 {
 
     public class Technology
     {
-        public Technology()
+        Technologies currentTechnology;
+        public Technology(Technologies tech)
         {
-
+           // currentTechnology = Enum.GetValues(typeof(Technologies)).Cast<string>().Where(x => x == tech);
         }
-        public class AspNet : ITechnology
-        {
-            public string GenerateView()
-            {
-                return "";
-                //throw new NotImplementedException();
-            }
-            public string GenerateServerCode()
-            {
-                return "";
-                //throw new NotImplementedException();
-            }
-        }
-        public class AspMVC : ITechnology
-        {
-            public string GenerateView()
-            {
-                throw new NotImplementedException();
-            }
-            public string GenerateServerCode()
-            {
-                throw new NotImplementedException();
-            }
-        }
-        public class Angular : ITechnology
-        {
-
-            public string GenerateView()
-            {
-                throw new NotImplementedException();
-            }
-
-            public string GenerateServerCode()
-            {
-                throw new NotImplementedException();
-            }
-        }
+        
     }
 
+    public enum Technologies
+    {
+        AspNet,
+        AspMVC,
+        Angular
+    }
 }

@@ -45,17 +45,19 @@
             this.table_name = new System.Windows.Forms.TextBox();
             this.sp_name = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.ups = new System.Windows.Forms.RadioButton();
+            this.ins = new System.Windows.Forms.RadioButton();
+            this.SqlConnection_obj = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.SqlCommand_obj = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.AllSps = new System.Windows.Forms.ComboBox();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.SqlConnection_obj = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.SqlCommand_obj = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.ins = new System.Windows.Forms.RadioButton();
-            this.ups = new System.Windows.Forms.RadioButton();
+            this.lbltechnology = new System.Windows.Forms.Label();
+            this.ddlTechnology = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -222,6 +224,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.ddlTechnology);
+            this.tabPage2.Controls.Add(this.lbltechnology);
             this.tabPage2.Controls.Add(this.ups);
             this.tabPage2.Controls.Add(this.ins);
             this.tabPage2.Controls.Add(this.SqlConnection_obj);
@@ -241,41 +245,27 @@
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
-            // richTextBox1
+            // ups
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(-4, 148);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(912, 354);
-            this.richTextBox1.TabIndex = 3;
-            this.richTextBox1.Text = "";
+            this.ups.AutoSize = true;
+            this.ups.Location = new System.Drawing.Point(370, 154);
+            this.ups.Name = "ups";
+            this.ups.Size = new System.Drawing.Size(60, 17);
+            this.ups.TabIndex = 19;
+            this.ups.Text = "Update";
+            this.ups.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // ins
             // 
-            this.button3.Location = new System.Drawing.Point(152, 104);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Genrate";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(28, 33);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(39, 13);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "All Sps";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // AllSps
-            // 
-            this.AllSps.FormattingEnabled = true;
-            this.AllSps.Location = new System.Drawing.Point(152, 25);
-            this.AllSps.Name = "AllSps";
-            this.AllSps.Size = new System.Drawing.Size(679, 21);
-            this.AllSps.TabIndex = 0;
+            this.ins.AutoSize = true;
+            this.ins.Checked = true;
+            this.ins.Location = new System.Drawing.Point(265, 154);
+            this.ins.Name = "ins";
+            this.ins.Size = new System.Drawing.Size(51, 17);
+            this.ins.TabIndex = 18;
+            this.ins.TabStop = true;
+            this.ins.Text = "Insert";
+            this.ins.UseVisualStyleBackColor = true;
             // 
             // SqlConnection_obj
             // 
@@ -311,27 +301,59 @@
             this.label7.TabIndex = 14;
             this.label7.Text = "SqlCommand Object";
             // 
-            // ins
+            // richTextBox1
             // 
-            this.ins.AutoSize = true;
-            this.ins.Checked = true;
-            this.ins.Location = new System.Drawing.Point(265, 109);
-            this.ins.Name = "ins";
-            this.ins.Size = new System.Drawing.Size(51, 17);
-            this.ins.TabIndex = 18;
-            this.ins.TabStop = true;
-            this.ins.Text = "Insert";
-            this.ins.UseVisualStyleBackColor = true;
+            this.richTextBox1.Location = new System.Drawing.Point(-4, 198);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(912, 304);
+            this.richTextBox1.TabIndex = 3;
+            this.richTextBox1.Text = "";
             // 
-            // ups
+            // button3
             // 
-            this.ups.AutoSize = true;
-            this.ups.Location = new System.Drawing.Point(370, 109);
-            this.ups.Name = "ups";
-            this.ups.Size = new System.Drawing.Size(60, 17);
-            this.ups.TabIndex = 19;
-            this.ups.Text = "Update";
-            this.ups.UseVisualStyleBackColor = true;
+            this.button3.Location = new System.Drawing.Point(152, 149);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "Genrate";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(28, 33);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(39, 13);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "All Sps";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // AllSps
+            // 
+            this.AllSps.FormattingEnabled = true;
+            this.AllSps.Location = new System.Drawing.Point(152, 25);
+            this.AllSps.Name = "AllSps";
+            this.AllSps.Size = new System.Drawing.Size(679, 21);
+            this.AllSps.TabIndex = 0;
+            this.AllSps.SelectedIndexChanged += new System.EventHandler(this.AllSps_SelectedIndexChanged);
+            // 
+            // lbltechnology
+            // 
+            this.lbltechnology.AutoSize = true;
+            this.lbltechnology.Location = new System.Drawing.Point(28, 107);
+            this.lbltechnology.Name = "lbltechnology";
+            this.lbltechnology.Size = new System.Drawing.Size(63, 13);
+            this.lbltechnology.TabIndex = 20;
+            this.lbltechnology.Text = "Technology";
+            // 
+            // ddlTechnology
+            // 
+            this.ddlTechnology.FormattingEnabled = true;
+            this.ddlTechnology.Location = new System.Drawing.Point(152, 104);
+            this.ddlTechnology.Name = "ddlTechnology";
+            this.ddlTechnology.Size = new System.Drawing.Size(121, 21);
+            this.ddlTechnology.TabIndex = 21;
             // 
             // SPs
             // 
@@ -383,5 +405,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.RadioButton ups;
         private System.Windows.Forms.RadioButton ins;
+        private System.Windows.Forms.ComboBox ddlTechnology;
+        private System.Windows.Forms.Label lbltechnology;
     }
 }
