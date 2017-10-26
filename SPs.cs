@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.IO;
+using SearchFile.Library;
 
 
 namespace SearchFile
@@ -226,7 +227,11 @@ where type='P' order by 1", con);
         private void button3_Click(object sender, EventArgs e)
         {
             //var currentTechnology = Enum.GetValues(typeof(Technologies)).Cast<Int32>().ToDictionary(currentItem => Enum.GetName(typeof(Technologies), currentItem));
+            #region Technology
             Technology tech = new Technology((Technologies)Enum.Parse(typeof(Technologies), Convert.ToString(ddlTechnology.SelectedItem)));
+            CurrentTechnology currentTechnology = tech.GetCurrentTechnology();
+            string data = currentTechnology.GenerateView();
+            #endregion
             SqlConnection con = new SqlConnection(Connection_Strings.Text);
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.StoredProcedure;

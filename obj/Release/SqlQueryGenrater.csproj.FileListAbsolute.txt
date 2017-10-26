@@ -49,10 +49,8 @@ G:\SqlQueryGenrator\obj\Release\SearchFile.exe.manifest
 G:\SqlQueryGenrator\obj\Release\SearchFile.application
 E:\SqlQueryGenrator\obj\Release\SqlQueryGenrater.csprojResolveAssemblyReference.cache
 E:\SqlQueryGenrator\obj\Release\SqlQueryGenrater.csproj.GenerateResource.Cache
-C:\Users\shivalsingh\Source\Repos\CodeGenretor\bin\Release\SearchFile.exe.config
-C:\Users\shivalsingh\Source\Repos\CodeGenretor\obj\Release\SearchFile.exe
-C:\Users\shivalsingh\Source\Repos\CodeGenretor\obj\Release\SearchFile.pdb
 C:\Users\shivalsingh\Source\Repos\CodeGenretor\bin\Release\ConnectionStrings.accdb
+C:\Users\shivalsingh\Source\Repos\CodeGenretor\bin\Release\SearchFile.exe.config
 C:\Users\shivalsingh\Source\Repos\CodeGenretor\bin\Release\SearchFile.exe.manifest
 C:\Users\shivalsingh\Source\Repos\CodeGenretor\bin\Release\SearchFile.application
 C:\Users\shivalsingh\Source\Repos\CodeGenretor\bin\Release\SearchFile.exe
@@ -65,3 +63,6 @@ C:\Users\shivalsingh\Source\Repos\CodeGenretor\obj\Release\SearchFile.SPs.resour
 C:\Users\shivalsingh\Source\Repos\CodeGenretor\obj\Release\SqlQueryGenrater.csproj.GenerateResource.Cache
 C:\Users\shivalsingh\Source\Repos\CodeGenretor\obj\Release\SearchFile.exe.manifest
 C:\Users\shivalsingh\Source\Repos\CodeGenretor\obj\Release\SearchFile.application
+C:\Users\shivalsingh\Source\Repos\CodeGenretor\obj\Release\SearchFile.exe
+C:\Users\shivalsingh\Source\Repos\CodeGenretor\obj\Release\SearchFile.pdb
+C:\Users\shivalsingh\Source\Repos\CodeGenretor\obj\Release\SqlQueryGenrater.csprojResolveAssemblyReference.cache

@@ -208,9 +208,7 @@ and COLUMNPROPERTY(object_id(TABLE_NAME), COLUMN_NAME, 'IsIdentity') <> 1", CS.T
                         _Design += "<td><asp:DropDownList runat=\"server\" ID=\"ddl" + Row.Cells[2].Value + "\"></asp:DropDownList></td>";
                         _Cs +=Environment.NewLine+  "command.Parameters.AddWithValue(\"@" + Row.Cells[2].Value + "\",ddl" + Row.Cells[2].Value + ".SelectedValue);";
                         _BindEditData += Environment.NewLine + "ddl" + Row.Cells[2].Value + ".SelectedValue = ds.Tables[0].Rows[0][\"" + Row.Cells[2].Value + "\"];";
-
-
-
+                        
                     }
                     _GridCols += "\n<asp:BoundField HeaderText=\"" + Row.Cells[2].Value + "\"" + " DataField=\"" + Row.Cells[2].Value + "\"" + " />";
                     _Design += "</tr>";

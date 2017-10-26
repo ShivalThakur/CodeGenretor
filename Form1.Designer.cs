@@ -107,7 +107,6 @@
             this.textBox1.Size = new System.Drawing.Size(482, 20);
             this.textBox1.TabIndex = 13;
             this.textBox1.Text = "connection";
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
             // 
             // label2
             // 
@@ -117,7 +116,6 @@
             this.label2.Size = new System.Drawing.Size(76, 13);
             this.label2.TabIndex = 12;
             this.label2.Text = "SqlConnection";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // cs
             // 
@@ -200,7 +198,6 @@
             this.button3.TabIndex = 7;
             this.button3.Text = "Genrate Update";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // richTextBox1
             // 

@@ -2,11 +2,8 @@
 using System.Data;
 using System.Configuration;
 using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+using SearchFile;
 
 /// <summary>
 /// Summary description for EasyDbcl
@@ -22,9 +19,7 @@ public class EasyDbcl
     string sConString = ConfigurationSettings.AppSettings["ConnectionString"];
     public EasyDbcl()
     {
-        //
-        // TODO: Add constructor logic here
-        //
+        sConString = Form1.connectionString;
     }
     public DataSet GetDataset(SqlCommand sSql)
     {
@@ -115,8 +110,8 @@ public class EasyDbcl
         }
         catch (Exception e)
         {
-            Emailcl email = new Emailcl();
-            email.sendMail(e.Message + "<br />" + e.StackTrace + "<br />" + e.Source, "Error Tracker", "shivalthakur@gmail.com", "", "");
+            //Emailcl email = new Emailcl();
+            //email.sendMail(e.Message + "<br />" + e.StackTrace + "<br />" + e.Source, "Error Tracker", "shivalthakur@gmail.com", "", "");
             //throw;
         }
         finally
@@ -133,4 +128,13 @@ public class EasyDbcl
         oDataReader = oCommand.ExecuteReader();
         return oDataReader;
     }
+}
+interface IDataBase
+{
+    DataSet ExecuteSql(string sql);
+    DataSet ExecuteProcedureToGetColumns(string spName);
+}
+enum DataBaseType
+{
+    SqlServer
 }

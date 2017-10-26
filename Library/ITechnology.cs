@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 
 namespace SearchFile.Library
 {
-    interface ITechnology
+    public abstract class CurrentTechnology
     {
-        string GenerateView();
-        string GenerateServerCode();
+        public DataSet colData;
+        public abstract string GenerateView();
+        public abstract string GenerateServerCode();
     }
 }

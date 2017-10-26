@@ -89,6 +89,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ConnectionStringsDataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Library\EasyDbcl.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
