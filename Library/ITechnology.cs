@@ -9,7 +9,7 @@ namespace SearchFile.Library
     public abstract class CurrentTechnology
     {
         public DataSet colData;
-        public abstract string GenerateView();
+        public abstract string GenerateView(string spName);
         public abstract string GenerateServerCode();
     }
 }

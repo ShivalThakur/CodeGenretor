@@ -46,16 +46,17 @@ namespace SearchFile
     }
     public class AspNet : CurrentTechnology
     {
-
+        IDataBase IDb;
         public AspNet(DataSet ds)
         {
             colData = ds;
+            IDb = Form1.IDb;
         }
-        public override string GenerateView()
+        public override string GenerateView(string spName)
         {
             OperationsDB oDb = new OperationsDB();
-            oDb.ExecuteSql("Select  ");
-            return "View";
+            DataSet ds= oDb.ExecuteProcedureToGetColumns(spName);
+            return ds.Tables[0].Rows[0][0].ToString();
 
             //throw new NotImplementedException();
         }
@@ -65,20 +66,42 @@ namespace SearchFile
             return "Cs Code";
         }
     }
-    class OperationsDB :IDataBase
+    class OperationsDB
     {
-        EasyDbcl db = null;
+
         DataSet ds = null;
-        DataBaseType dbType;
+        IDataBase db;
         public OperationsDB()
         {
+            db = Form1.IDb;
+        }
+        public OperationsDB(IDataBase dbType)
+        {
+            db = dbType;
+        }
+        public DataSet ExecuteProcedureToGetColumns(string spName)
+        {
+            return db.ExecuteProcedureToGetColumns(spName);
+        }
+    }
+    class SqlServer : IDataBase
+    {
+        EasyDbcl db = null;
+        public SqlServer()
+        {
             db = new EasyDbcl();
-            dbType = DataBaseType.SqlServer;
         }
         public DataSet ExecuteSql(string sql)
         {
-            ds = db.GetDataset(sql);
-            return ds;
+            return null;
+            // throw new NotImplementedException();
+        }
+
+        public DataSet ExecuteProcedureToGetColumns(string spName)
+        {
+            return db.GetDataset(@"select p.name ParameterName,t.name ParameterType,p.max_length from sys.all_parameters p
+Join sys.types t on  t.user_type_id = p.user_type_id
+where  p.object_id =object_id('" + spName + "');");
         }
         public string SqlDataType(string comingDataType)
         {
@@ -117,14 +140,6 @@ namespace SearchFile
                     }
             }
             return returndatatype;
-        }
-
-
-        public DataSet ExecuteProcedureToGetColumns(string spName)
-        {
-            return db.GetDataset(@"select p.name ParameterName,t.name ParameterType,p.max_length from sys.all_parameters p
-Join sys.types t on  t.user_type_id = p.user_type_id
-where  p.object_id =object_id('"+spName+"');");
         }
     }
 }

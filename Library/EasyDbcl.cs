@@ -129,7 +129,7 @@ public class EasyDbcl
         return oDataReader;
     }
 }
-interface IDataBase
+public interface IDataBase
 {
     DataSet ExecuteSql(string sql);
     DataSet ExecuteProcedureToGetColumns(string spName);

@@ -16,6 +16,7 @@ namespace SearchFile
     public partial class Form1 : Form
     {
         public static string connectionString;
+        public static IDataBase IDb;
         public Form1()
         {
             InitializeComponent();
@@ -211,7 +212,10 @@ and COLUMNPROPERTY(object_id(TABLE_NAME), COLUMN_NAME, 'IsIdentity') <> 1", con)
                 conStr = cs.Text;
             else
                 conStr = cs.SelectedValue.ToString();
+            //
             connectionString = conStr;
+            IDb = new SqlServer();
+            //
             sps.Connection_Strings.Text = conStr;
             sps.Show();
             //sent to new form

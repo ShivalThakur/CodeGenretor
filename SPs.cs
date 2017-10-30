@@ -230,7 +230,8 @@ where type='P' order by 1", con);
             #region Technology
             Technology tech = new Technology((Technologies)Enum.Parse(typeof(Technologies), Convert.ToString(ddlTechnology.SelectedItem)));
             CurrentTechnology currentTechnology = tech.GetCurrentTechnology();
-            string data = currentTechnology.GenerateView();
+            string data = currentTechnology.GenerateView(AllSps.SelectedValue.ToString());
+             
             #endregion
             SqlConnection con = new SqlConnection(Connection_Strings.Text);
             SqlCommand cmd = new SqlCommand();

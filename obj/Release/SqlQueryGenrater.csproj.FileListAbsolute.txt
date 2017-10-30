@@ -65,4 +65,3 @@ C:\Users\shivalsingh\Source\Repos\CodeGenretor\obj\Release\SearchFile.exe.manife
 C:\Users\shivalsingh\Source\Repos\CodeGenretor\obj\Release\SearchFile.application
 C:\Users\shivalsingh\Source\Repos\CodeGenretor\obj\Release\SearchFile.exe
 C:\Users\shivalsingh\Source\Repos\CodeGenretor\obj\Release\SearchFile.pdb
-C:\Users\shivalsingh\Source\Repos\CodeGenretor\obj\Release\SqlQueryGenrater.csprojResolveAssemblyReference.cache
