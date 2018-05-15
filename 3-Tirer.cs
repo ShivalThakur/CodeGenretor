@@ -50,7 +50,8 @@ select TABLE_NAME from INFORMATION_SCHEMA.tables order by table_name ", con);
             SqlDataAdapter adapter = new SqlDataAdapter(@"select column_name,data_type, character_maximum_length as _Length from information_schema.columns
  where table_name = @tablename
 and COLUMNPROPERTY(object_id(TABLE_NAME), COLUMN_NAME, 'IsIdentity') <> 1", CS.Text);
-            adapter.SelectCommand.Parameters.Add("@tablename", SqlDbType.VarChar).Value = Tables.SelectedValue;
+            adapter.SelectCommand.Parameters.Add("@tablename", SqlDbType.VarChar
+                ).Value = Tables.SelectedValue;
             DataSet ds = new DataSet();
             
             adapter.Fill(ds);

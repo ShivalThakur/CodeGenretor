@@ -261,7 +261,10 @@ where SPECIFIC_NAME=@procedure", con);
             {
             }
             updateQuery += Environment.NewLine + SqlCommand_obj.Text + ".ExecuteNonQuery();";
-            richTextBox1.Text = updateQuery;
+            //richTextBox1.Text = updateQuery;
+            richTextBox1.Text = "-------View--------";
+            richTextBox1.Text = data;
+                 
         }
 
         private void AllSps_SelectedIndexChanged(object sender, EventArgs e)

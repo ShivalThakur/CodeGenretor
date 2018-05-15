@@ -89,6 +89,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ConnectionStringsDataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Library\Angular.cs" />
+    <Compile Include="Library\AspNet.cs" />
+    <Compile Include="Library\DB\OperationsDB.cs" />
+    <Compile Include="Library\DB\SqlServer.cs" />
     <Compile Include="Library\EasyDbcl.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -97,6 +101,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Library\ITechnology.cs" />
+    <Compile Include="Library\SqlColumns.cs" />
     <Compile Include="Library\Technology.cs" />
     <Compile Include="password.cs">
       <SubType>Form</SubType>
@@ -157,11 +162,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ConnectionStrings.accdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
       <Visible>False</Visible>
       <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
@@ -182,6 +182,12 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ConnectionStrings.accdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>ConnectionStringsDataSet1.xsd</DependentUpon>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

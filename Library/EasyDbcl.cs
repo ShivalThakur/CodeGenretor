@@ -132,7 +132,7 @@ public class EasyDbcl
 public interface IDataBase
 {
     DataSet ExecuteSql(string sql);
-    DataSet ExecuteProcedureToGetColumns(string spName);
+    DataSet ExecuteProcedureToGetColumns(string spName);    
 }
 enum DataBaseType
 {

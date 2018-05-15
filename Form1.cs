@@ -10,6 +10,7 @@ using System.IO;
 using s = System.Net;
 using System.Data.SqlClient;
 using SearchFile.Library;
+using SearchFile.Library.DB;
 
 namespace SearchFile
 {
