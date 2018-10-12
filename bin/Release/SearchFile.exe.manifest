@@ -52,14 +52,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SearchFile.exe" size="73728">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SearchFile.exe" size="74752">
       <assemblyIdentity name="SearchFile" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>brdVSW/UQ3SD37tWLn3+SOG9vf4=</dsig:DigestValue>
+        <dsig:DigestValue>Ark64ZlWNG1BBFTjd9NPsFXTz/I=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -69,7 +69,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>TuUkhVcfj95y+YVNwfh5YNN2Eoc=</dsig:DigestValue>
+      <dsig:DigestValue>jpj5AFhR/t9q9VL9Yg5D4IQgfVU=</dsig:DigestValue>
     </hash>
   </file>
   <file name="SearchFile.exe.config" size="456">

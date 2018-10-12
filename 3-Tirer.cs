@@ -201,13 +201,13 @@ and COLUMNPROPERTY(object_id(TABLE_NAME), COLUMN_NAME, 'IsIdentity') <> 1", CS.T
                     if (Row.Cells[TextBoxDropDown.Name].Value.ToString() == "TextBox")
                     {
                         _Design += "\n<td><asp:TextBox runat=\"server\" " + (Row.Cells[4].Value != System.DBNull.Value  ? " MaxLength=\"" + Row.Cells[4].Value + "\"" : "") + "  ID=\"txt" + Row.Cells[2].Value + "\"></asp:TextBox></td>";
-                        _Cs += Environment.NewLine + "command.Parameters.AddWithValue(\"@" + Row.Cells[2].Value + "\",txt" + Row.Cells[2].Value + ".Text);";
+                        _Cs += Environment.NewLine + "command.Parameters.AddWithValue(\"@" + Row.Cells[2].Value + "\",entity." + Row.Cells[2].Value + ");";
                         _BindEditData += Environment.NewLine + "txt" + Row.Cells[2].Value + ".Text = ds.Tables[0].Rows[0][\"" + Row.Cells[2].Value + "\"];";
                     }
                     else
                     {
                         _Design += "<td><asp:DropDownList runat=\"server\" ID=\"ddl" + Row.Cells[2].Value + "\"></asp:DropDownList></td>";
-                        _Cs +=Environment.NewLine+  "command.Parameters.AddWithValue(\"@" + Row.Cells[2].Value + "\",ddl" + Row.Cells[2].Value + ".SelectedValue);";
+                        _Cs +=Environment.NewLine+  "command.Parameters.AddWithValue(\"@" + Row.Cells[2].Value + "\",entity." + Row.Cells[2].Value + ");";
                         _BindEditData += Environment.NewLine + "ddl" + Row.Cells[2].Value + ".SelectedValue = ds.Tables[0].Rows[0][\"" + Row.Cells[2].Value + "\"];";
                         
                     }

@@ -21,7 +21,7 @@ namespace SearchFile.Library
             string parameters = "";
             foreach (DataRow item in ds.Tables[0].Rows)
             {
-                parameters += item["ParameterName"] + "=\'0\',";
+                parameters += item["ParameterName"] + "=NULL,";
             }
 
             parameters = parameters.Substring(0, parameters.Length - 1);

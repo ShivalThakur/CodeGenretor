@@ -165,7 +165,7 @@ where table_name = @tablename
                        Environment.NewLine +
                            " IF  @I_U_S='U'" + Environment.NewLine + "" + updateQuery + "" + Environment.NewLine +
                            " IF  @I_U_S='S'" + Environment.NewLine + "" + selectCols + " from " + table_name.Text + selectWhere + Environment.NewLine +
-                           " IF  @I_U_S='A'" + Environment.NewLine + "" + selectCols + " from " + table_name.Text + Environment.NewLine +                            @" END
+                           " IF  @I_U_S='A'" + Environment.NewLine + "" + selectCols + " from " + table_name.Text + Environment.NewLine + @" END
                              ";
             if (FolderPath.Text != "")
             {
@@ -201,25 +201,34 @@ where table_name = @tablename
         private void SPs_Load(object sender, EventArgs e)
         {
             #region BindableAttribute SPs names
-            SqlConnection con = new SqlConnection(Connection_Strings.Text);
-            con.Open();
-            SqlDataAdapter adapter = new SqlDataAdapter(@"select Upper(name) as Sps from sys.objects
+            try
+            {
+                SqlConnection con = new SqlConnection(Connection_Strings.Text);
+                con.Open();
+                SqlDataAdapter adapter = new SqlDataAdapter(@"select Upper(name) as Sps from sys.objects
 where type='P' order by 1", con);
 
-            DataSet ds = new DataSet();
-            adapter.Fill(ds);
-            con.Close();
-            AllSps.DisplayMember = "Sps";
-            AllSps.ValueMember = "Sps";
-            AllSps.DataSource = ds.Tables[0];
+                DataSet ds = new DataSet();
+                adapter.Fill(ds);
+                con.Close();
+                AllSps.DisplayMember = "Sps";
+                AllSps.ValueMember = "Sps";
+                AllSps.DataSource = ds.Tables[0];
 
             #endregion
-            //Load TechNologies
-            var technologies = Enum.GetNames(typeof(Technologies));
-            foreach (var item in technologies)
-            {
-                ddlTechnology.Items.Add(item);
+                //Load TechNologies
+                var technologies = Enum.GetNames(typeof(Technologies));
+                foreach (var item in technologies)
+                {
+                    ddlTechnology.Items.Add(item);
+                }
             }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Error: " + ex.Message);
+            }
+
 
 
         }
@@ -228,10 +237,17 @@ where type='P' order by 1", con);
         {
             //var currentTechnology = Enum.GetValues(typeof(Technologies)).Cast<Int32>().ToDictionary(currentItem => Enum.GetName(typeof(Technologies), currentItem));
             #region Technology
+            if (ddlTechnology.SelectedItem == null)
+            {
+                MessageBox.Show("Please select techonolgy");
+                ddlTechnology.Focus();
+                return;
+            }
             Technology tech = new Technology((Technologies)Enum.Parse(typeof(Technologies), Convert.ToString(ddlTechnology.SelectedItem)));
+
             CurrentTechnology currentTechnology = tech.GetCurrentTechnology();
             string data = currentTechnology.GenerateView(AllSps.SelectedValue.ToString());
-             
+
             #endregion
             SqlConnection con = new SqlConnection(Connection_Strings.Text);
             SqlCommand cmd = new SqlCommand();
@@ -248,23 +264,40 @@ where SPECIFIC_NAME=@procedure", con);
             updateQuery += Environment.NewLine + SqlCommand_obj.Text + ".CommandText = \"" + AllSps.SelectedValue.ToString() + "\";";
             ///////////parameters
             Form1 f = new Form1();
-
+            var totalCols = ds.Tables[0].Rows.Count;
+            var sqlParamters = "SqlParameter[] parArr  = new SqlParameter[" + totalCols + "];";
+            var counter=0;
             foreach (DataRow dr in ds.Tables[0].Rows)
             {
-                updateQuery += Environment.NewLine + SqlCommand_obj.Text + ".Parameters.Add(\"" + dr["Parameter_name"] + "\",SqlDbType." + f.SqlDataType(dr["Data_Type"].ToString()) + ").Value=";
+                updateQuery += Environment.NewLine + SqlCommand_obj.Text + ".Parameters.Add(\"" + dr["Parameter_name"] +
+                    "\",SqlDbType." + f.SqlDataType(dr["Data_Type"].ToString()) + ").Value=";
+                //***************** With Parameters
+                var pureParName = dr["Parameter_name"].ToString().Replace("@", "");
+                var parName = "par" + pureParName;
+                sqlParamters += @""+Environment.NewLine+"SqlParameter " + parName + " = new SqlParameter();"+Environment.NewLine+""
+                                  + parName + ".ParameterName = \"" + dr["Parameter_name"] + "\";" + Environment.NewLine + "" +
+                                    parName + ".SqlDbType = SqlDbType." + f.SqlDataType(dr["Data_Type"].ToString()) + ";" + Environment.NewLine + "" +
+                                    parName + ".Value =" + pureParName + ";" + Environment.NewLine + "" +
+                                    parName + ".Direction =ParameterDirection.Input;" + Environment.NewLine + "" +
+                                    "parArr["+counter+"]=" + parName + ";" + Environment.NewLine + "";
+                counter++;
             }
-            if (ins.Checked)
-            {
-                updateQuery += "";
-            }
-            else
-            {
-            }
+
+            //if (ins.Checked)
+            //{
+            //    updateQuery += "";
+            //}
+            //else
+            //{
+            //}
             updateQuery += Environment.NewLine + SqlCommand_obj.Text + ".ExecuteNonQuery();";
             //richTextBox1.Text = updateQuery;
-            richTextBox1.Text = "-------View--------";
-            richTextBox1.Text = data;
-                 
+            richTextBox1.Text = "-------View--------" + Environment.NewLine + "";
+            richTextBox1.Text += updateQuery;
+            richTextBox1.Text += "" + Environment.NewLine + "------With SqlParameters Array------" + Environment.NewLine + "";
+            richTextBox1.Text += sqlParamters;
+
+
         }
 
         private void AllSps_SelectedIndexChanged(object sender, EventArgs e)

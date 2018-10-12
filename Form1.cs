@@ -242,7 +242,7 @@ and COLUMNPROPERTY(object_id(TABLE_NAME), COLUMN_NAME, 'IsIdentity') <> 1", con)
         {
 
             _3_Tirer _3T = new _3_Tirer();
-            _3T.CS.Text = cs.SelectedValue.ToString();
+            _3T.CS.Text = cs.Text.ToString();
             _3T.Show();
         }
 

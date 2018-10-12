@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using SearchFile.Library.DB;
+using System;
 
 namespace SearchFile.Library
 {
@@ -13,10 +14,19 @@ namespace SearchFile.Library
         }
         public override string GenerateView(string spName)
         {
-            OperationsDB oDb = new OperationsDB();
-            DataSet ds= oDb.ExecuteProcedureToGetColumns(spName);
-            return ds.Tables[0].Rows[0][0].ToString();
+            try
+            {
+                OperationsDB oDb = new OperationsDB();
+                DataSet ds= oDb.ExecuteProcedureToGetColumns(spName);
+                return ds.Tables[0].Rows[0][0].ToString();
 
+            }
+            catch (Exception)
+            {
+                
+                return "";
+            }
+            
             //throw new NotImplementedException();
         }
 
