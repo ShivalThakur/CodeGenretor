@@ -12,7 +12,8 @@ namespace SearchFile.Library
             var columns= GetColumnNames(spName);
             string serverProp = "";
             //Create Angular View
-            string view = "<table><tr ng-repeat=\"obj in objList\">";
+            string view = "----- Angular View -----"+Environment.NewLine;
+            view += "<table><tr ng-repeat=\"obj in objList\">";
             foreach (var item in columns)
             {
                 view += "<td>{{obj."+item.ColumnName+"}}</td>";
@@ -20,6 +21,7 @@ namespace SearchFile.Library
             }
             view += "</tr></table>";
             view += Environment.NewLine+ "-----------------------";
+            view += Environment.NewLine+ "------- WCF ----------";
             view += Environment.NewLine;
             view += serverProp;
 

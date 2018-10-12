@@ -293,6 +293,10 @@ where SPECIFIC_NAME=@procedure", con);
             updateQuery += Environment.NewLine + SqlCommand_obj.Text + ".ExecuteNonQuery();";
             //richTextBox1.Text = updateQuery;
             richTextBox1.Text = "-------View--------" + Environment.NewLine + "";
+            if (ddlTechnology.Text == Technologies.Angular.ToString())
+            {
+                richTextBox1.Text += data;
+            }
             richTextBox1.Text += updateQuery;
             richTextBox1.Text += "" + Environment.NewLine + "------With SqlParameters Array------" + Environment.NewLine + "";
             richTextBox1.Text += sqlParamters;
