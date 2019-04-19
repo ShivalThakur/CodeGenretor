@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.IO;
+using SearchFile.Shared;
 
 namespace SearchFile
 {
@@ -40,10 +41,11 @@ select TABLE_NAME from INFORMATION_SCHEMA.tables order by table_name ", con);
         {
           
             string Command_Parameters = "";
+            string className =Convert.ToString(Tables.SelectedValue);
             string table_obj=Tables.SelectedValue+"_Obj";
             string File_Contents = "using System;\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Web;\nusing System.Web.UI;\nusing System.Data;\nusing System.Data.SqlClient;";
 
-            File_Contents +=  Environment.NewLine+ @"public class "+Tables.SelectedValue;
+            File_Contents +=  Environment.NewLine+ @"public class "+className;
 
 
             ////////////////////get coloumnsname and data type
@@ -60,7 +62,7 @@ and COLUMNPROPERTY(object_id(TABLE_NAME), COLUMN_NAME, 'IsIdentity') <> 1", CS.T
             /////////////////////variables
             foreach (DataRow item in ds.Tables[0].Rows)
             {
-                File_Contents += Environment.NewLine + " private static " + SqlDataType(item["data_type"].ToString()) +" _"+item["column_name"] + ";";
+                File_Contents += Environment.NewLine + " private " + SqlDataType(item["data_type"].ToString()) +" _"+item["column_name"] + ";";
                 Command_Parameters += "\ncmd.Parameters.AddWithValue(\"@"+item["column_name"]+""+"\","+table_obj+"."+item["column_name"]+");";
                 
             }
@@ -68,7 +70,7 @@ and COLUMNPROPERTY(object_id(TABLE_NAME), COLUMN_NAME, 'IsIdentity') <> 1", CS.T
             /////////////////////
             foreach (DataRow item in ds.Tables[0].Rows)
             {
-                File_Contents += Environment.NewLine + " public static " + SqlDataType(item["data_type"].ToString()) + " " + item["column_name"] + "\n{\nget\n{\nreturn _" + item["column_name"] + ";\n}\nset\n{\n_" + item["column_name"] + "=value;\n}\n}";
+                File_Contents += Environment.NewLine + " public " + SqlDataType(item["data_type"].ToString()) + " " + item["column_name"] + "\n{\nget\n{\nreturn _" + item["column_name"] + ";\n}\nset\n{\n_" + item["column_name"] + "=value;\n}\n}";
                 
             }
             File_Contents += "\n}";
@@ -87,7 +89,14 @@ and COLUMNPROPERTY(object_id(TABLE_NAME), COLUMN_NAME, 'IsIdentity') <> 1", CS.T
                  cmd.CommandType = CommandType.StoredProcedure;"+Command_Parameters+
                  "\ncmd.ExecuteNonQuery();\ncon.Close();\n}\ncatch(Exception ex)\n{throw ex;}\n}";
             File_Contents += "\n}";
+            //Fill Up the Object
+            File_Contents += Environment.NewLine;
+            File_Contents += Environment.NewLine;
+            foreach (DataRow item in ds.Tables[0].Rows)
+            {
+                File_Contents += Environment.NewLine + " public " + SqlDataType(item["data_type"].ToString()) + " " + item["column_name"] + "\n{\nget\n{\nreturn _" + item["column_name"] + ";\n}\nset\n{\n_" + item["column_name"] + "=value;\n}\n}";
 
+            }
 
             richTextBox1.Text = File_Contents;
            
@@ -160,6 +169,11 @@ and COLUMNPROPERTY(object_id(TABLE_NAME), COLUMN_NAME, 'IsIdentity') <> 1", CS.T
                         returndatatype = "short";
                         break;
                     }
+                case "decimal":
+                    {
+                        returndatatype = "decimal";
+                        break;
+                    }
                
             }
             return returndatatype;
@@ -180,10 +194,17 @@ and COLUMNPROPERTY(object_id(TABLE_NAME), COLUMN_NAME, 'IsIdentity') <> 1", CS.T
 
         private void button3_Click(object sender, EventArgs e)
         {
+            SqlDataTypeToCClass cClass =new SqlDataTypeToCClass();
+            string className =Convert.ToString(Tables.SelectedValue);
+            string classObject = className.ToLower();
             string _Design = "<table>";
             string _Cs = Environment.NewLine + "void Crud() {";
             string _BindEditData = Environment.NewLine +Environment.NewLine + "void BindData(){";
             string _InsertUpdateData = Environment.NewLine + Environment.NewLine + "void InsertUpdateData(){";
+            string _FillObject = Environment.NewLine + Environment.NewLine;
+            _FillObject += "***************Fill Object *********************";
+            _FillObject += Environment.NewLine + className + " "+classObject +" = new "+className+"();";
+
 
             string _GridCols = "";
             foreach (DataGridViewRow Row in this.dataGridView_1707.Rows)
@@ -196,22 +217,26 @@ and COLUMNPROPERTY(object_id(TABLE_NAME), COLUMN_NAME, 'IsIdentity') <> 1", CS.T
                 //
                 if ((bool)Row.Cells[Check.Name].Value)
                 {
+                    string propName =Convert.ToString(Row.Cells[2].Value);
+                    string propDataType =Convert.ToString(Row.Cells[3].Value);
                     _Design += Environment.NewLine+ "<tr>";
-                    _Design +=  "\n<td>" + Row.Cells[2].Value + "</td>";
+                    _Design +=  "\n<td>" + propName + "</td>";
                     if (Row.Cells[TextBoxDropDown.Name].Value.ToString() == "TextBox")
                     {
-                        _Design += "\n<td><asp:TextBox runat=\"server\" " + (Row.Cells[4].Value != System.DBNull.Value  ? " MaxLength=\"" + Row.Cells[4].Value + "\"" : "") + "  ID=\"txt" + Row.Cells[2].Value + "\"></asp:TextBox></td>";
-                        _Cs += Environment.NewLine + "command.Parameters.AddWithValue(\"@" + Row.Cells[2].Value + "\",entity." + Row.Cells[2].Value + ");";
-                        _BindEditData += Environment.NewLine + "txt" + Row.Cells[2].Value + ".Text = ds.Tables[0].Rows[0][\"" + Row.Cells[2].Value + "\"];";
+                        _Design += "\n<td><asp:TextBox runat=\"server\" " + (Row.Cells[4].Value != System.DBNull.Value  ? " MaxLength=\"" + Row.Cells[4].Value + "\"" : "") + "  ID=\"txt" + propName + "\"></asp:TextBox></td>";
+                        _Cs += Environment.NewLine + "command.Parameters.AddWithValue(\"@" + propName + "\",entity." + propName + ");";
+                        _BindEditData += Environment.NewLine + "txt" + propName + ".Text = ds.Tables[0].Rows[0][\"" + propName + "\"];";
+                        _FillObject += Environment.NewLine + classObject + "." + propName + " = " + cClass.ToClass(propDataType)+ "(" + "txt" + propName + ".Text);";
                     }
                     else
                     {
-                        _Design += "<td><asp:DropDownList runat=\"server\" ID=\"ddl" + Row.Cells[2].Value + "\"></asp:DropDownList></td>";
-                        _Cs +=Environment.NewLine+  "command.Parameters.AddWithValue(\"@" + Row.Cells[2].Value + "\",entity." + Row.Cells[2].Value + ");";
-                        _BindEditData += Environment.NewLine + "ddl" + Row.Cells[2].Value + ".SelectedValue = ds.Tables[0].Rows[0][\"" + Row.Cells[2].Value + "\"];";
+                        _Design += "<td><asp:DropDownList runat=\"server\" ID=\"ddl" + propName + "\"></asp:DropDownList></td>";
+                        _Cs +=Environment.NewLine+  "command.Parameters.AddWithValue(\"@" + propName + "\",entity." + propName + ");";
+                        _BindEditData += Environment.NewLine + "ddl" + propName + ".SelectedValue = ds.Tables[0].Rows[0][\"" + propName + "\"];";
+                        _FillObject += Environment.NewLine + classObject + "." + propName + " = " + cClass.ToClass(propDataType) + "(" + "ddl" + propName + ".SelectedValue);";
                         
                     }
-                    _GridCols += "\n<asp:BoundField HeaderText=\"" + Row.Cells[2].Value + "\"" + " DataField=\"" + Row.Cells[2].Value + "\"" + " />";
+                    _GridCols += "\n<asp:BoundField HeaderText=\"" + propName + "\"" + " DataField=\"" + propName + "\"" + " />";
                     _Design += "</tr>";
                 }
             }
@@ -223,7 +248,7 @@ and COLUMNPROPERTY(object_id(TABLE_NAME), COLUMN_NAME, 'IsIdentity') <> 1", CS.T
             Design_.Text= _Design;
             _BindEditData += "}";
             _Cs += Environment.NewLine+ "}";
-            CS_.Text = _Cs+ _BindEditData;
+            CS_.Text = _Cs+ _BindEditData +_FillObject;
         }
 
     

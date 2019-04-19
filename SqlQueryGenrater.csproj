@@ -111,6 +111,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shared\SqlDataTypeToCClass.cs" />
     <Compile Include="SPs.cs">
       <SubType>Form</SubType>
     </Compile>

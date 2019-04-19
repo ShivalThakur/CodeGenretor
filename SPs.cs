@@ -246,7 +246,7 @@ where type='P' order by 1", con);
             Technology tech = new Technology((Technologies)Enum.Parse(typeof(Technologies), Convert.ToString(ddlTechnology.SelectedItem)));
 
             CurrentTechnology currentTechnology = tech.GetCurrentTechnology();
-            string data = currentTechnology.GenerateView(AllSps.SelectedValue.ToString());
+            string data = currentTechnology.GenerateView(AllSps.Text.ToString());
 
             #endregion
             SqlConnection con = new SqlConnection(Connection_Strings.Text);
@@ -256,12 +256,12 @@ where type='P' order by 1", con);
             SqlDataAdapter adapter = new SqlDataAdapter(@"select PARAMETER_NAME,DATA_TYPE  from INFORMATION_SCHEMA.PARAMETERS
 
 where SPECIFIC_NAME=@procedure", con);
-            adapter.SelectCommand.Parameters.Add("@procedure", SqlDbType.VarChar).Value = AllSps.SelectedValue.ToString();
+            adapter.SelectCommand.Parameters.Add("@procedure", SqlDbType.VarChar).Value = AllSps.Text.ToString();
             DataSet ds = new DataSet();
             adapter.Fill(ds);
             string updateQuery = "SqlCommand " + SqlCommand_obj.Text + " = new SqlCommand();";
             updateQuery += Environment.NewLine + SqlCommand_obj.Text + ".CommandType =  CommandType.StoredProcedure ;";
-            updateQuery += Environment.NewLine + SqlCommand_obj.Text + ".CommandText = \"" + AllSps.SelectedValue.ToString() + "\";";
+            updateQuery += Environment.NewLine + SqlCommand_obj.Text + ".CommandText = \"" + AllSps.Text.ToString() + "\";";
             ///////////parameters
             Form1 f = new Form1();
             var totalCols = ds.Tables[0].Rows.Count;
