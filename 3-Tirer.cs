@@ -214,30 +214,36 @@ and COLUMNPROPERTY(object_id(TABLE_NAME), COLUMN_NAME, 'IsIdentity') <> 1", CS.T
                 {
                     continue;
                 }
-                //
+                // 
+                string propName = Convert.ToString(Row.Cells[2].Value);
+                string propDataType = Convert.ToString(Row.Cells[3].Value);
                 if ((bool)Row.Cells[Check.Name].Value)
                 {
-                    string propName =Convert.ToString(Row.Cells[2].Value);
-                    string propDataType =Convert.ToString(Row.Cells[3].Value);
-                    _Design += Environment.NewLine+ "<tr>";
-                    _Design +=  "\n<td>" + propName + "</td>";
+                   
+                    _Design += Environment.NewLine + "<tr>";
+                    _Design += "\n<td>" + propName + "</td>";
                     if (Row.Cells[TextBoxDropDown.Name].Value.ToString() == "TextBox")
                     {
-                        _Design += "\n<td><asp:TextBox runat=\"server\" " + (Row.Cells[4].Value != System.DBNull.Value  ? " MaxLength=\"" + Row.Cells[4].Value + "\"" : "") + "  ID=\"txt" + propName + "\"></asp:TextBox></td>";
+                        _Design += "\n<td><asp:TextBox runat=\"server\" " + (Row.Cells[4].Value != System.DBNull.Value ? " MaxLength=\"" + Row.Cells[4].Value + "\"" : "") + "  ID=\"txt" + propName + "\"></asp:TextBox></td>";
                         _Cs += Environment.NewLine + "command.Parameters.AddWithValue(\"@" + propName + "\",entity." + propName + ");";
                         _BindEditData += Environment.NewLine + "txt" + propName + ".Text = ds.Tables[0].Rows[0][\"" + propName + "\"];";
-                        _FillObject += Environment.NewLine + classObject + "." + propName + " = " + cClass.ToClass(propDataType)+ "(" + "txt" + propName + ".Text);";
+                        _FillObject += Environment.NewLine + classObject + "." + propName + " = " + cClass.ToClass(propDataType) + "(" + "txt" + propName + ".Text);";
                     }
                     else
                     {
                         _Design += "<td><asp:DropDownList runat=\"server\" ID=\"ddl" + propName + "\"></asp:DropDownList></td>";
-                        _Cs +=Environment.NewLine+  "command.Parameters.AddWithValue(\"@" + propName + "\",entity." + propName + ");";
+                        _Cs += Environment.NewLine + "command.Parameters.AddWithValue(\"@" + propName + "\",entity." + propName + ");";
                         _BindEditData += Environment.NewLine + "ddl" + propName + ".SelectedValue = ds.Tables[0].Rows[0][\"" + propName + "\"];";
                         _FillObject += Environment.NewLine + classObject + "." + propName + " = " + cClass.ToClass(propDataType) + "(" + "ddl" + propName + ".SelectedValue);";
-                        
+
                     }
                     _GridCols += "\n<asp:BoundField HeaderText=\"" + propName + "\"" + " DataField=\"" + propName + "\"" + " />";
                     _Design += "</tr>";
+                }
+                else
+                {
+                    _FillObject += Environment.NewLine + classObject + "." + propName + " = " + cClass.ToClass(propDataType) + "(" + "txt" + propName + ".Text);";
+
                 }
             }
             _Design += "<tr><td><asp:Button runat=\"server\" Text=\"Submit\" ID=\"btnSave\" /></td></tr></table>";

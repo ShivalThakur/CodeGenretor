@@ -98,3 +98,4 @@ E:\CodeGenretor\obj\Release\SearchFile.SPs.resources
 E:\CodeGenretor\obj\Release\SqlQueryGenrater.csproj.GenerateResource.Cache
 E:\CodeGenretor\obj\Release\SearchFile.exe.manifest
 E:\CodeGenretor\obj\Release\SearchFile.application
+E:\CodeGenretor\obj\Release\SqlQueryGenrater.csprojResolveAssemblyReference.cache
